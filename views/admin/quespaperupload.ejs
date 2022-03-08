@@ -1,0 +1,259 @@
+<%- include('./includes/head.ejs') %>
+    <!-- Bootstrap select -->
+    <link rel="stylesheet" href="/backend/assets/vendor_components/bootstrap-select/dist/css/bootstrap-select.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/backend/assets/vendor_components/select2/dist/css/select2.min.css">
+    <style>
+        body {
+            text-transform: capitalize;
+        }
+    </style>
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <%- include('./includes/navigation.ejs') %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <div class="container mt-5">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <%if(editing){%>
+                                    <h4 class="box-title">Edit Question Paper</h4>
+                                    <%}else{%>
+                                        <h4 class="box-title">Upload New Question Paper</h4>
+                                        <%}%>
+                            </div>
+                            <%if(errMsg){%>
+                                <div style="width: 60%; margin: auto; padding: 1rem 3rem;">
+                                    <h4 class="alert alert-danger">
+                                        <%=errMsg%>
+                                    </h4>
+                                </div>
+                                <%}%>
+                                    <!-- /.box-header -->
+
+                                    <form class="form"
+                                        action="<%= !editing ? '/admin/upload-quespaper':'/admin/edit-quespaper'%>"
+                                        method="POST" enctype="multipart/form-data">
+                                        <div class="box-body">
+                                            <div class="form-row">
+                                                <div class="form-group col-4">
+                                                    <h5>category</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="category" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.category%>">
+                                                                <%=oldInput.category%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(category.length>0){%>
+                                                                        <%category.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <h5>subject</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="subject" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.subject%>">
+                                                                <%=oldInput.subject%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected  value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(subject.length>0){%>
+                                                                        <%subject.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <h5>college</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="college" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.college%>">
+                                                                <%=oldInput.college%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected  value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(college.length>0){%>
+                                                                        <%college.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <h5>Month</h5>
+                                                    <select class="form-control select2" style="width: 100%;" name="month" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.month%>" class="text-uppercase">
+                                                                <%=oldInput.month%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected  value="">Choose One</option>
+                                                                <%}%>
+                                                                    <option value="jan" class="text-uppercase"> jan
+                                                                    </option>
+                                                                    <option value="feb" class="text-uppercase"> feb
+                                                                    </option>
+                                                                    <option value="mar" class="text-uppercase"> mar
+                                                                    </option>
+                                                                    <option value="apr" class="text-uppercase"> apr
+                                                                    </option>
+                                                                    <option value="may" class="text-uppercase"> may
+                                                                    </option>
+                                                                    <option value="june" class="text-uppercase"> june
+                                                                    </option>
+                                                                    <option value="july" class="text-uppercase"> july
+                                                                    </option>
+                                                                    <option value="aug" class="text-uppercase"> aug
+                                                                    </option>
+                                                                    <option value="sep" class="text-uppercase"> sep
+                                                                    </option>
+                                                                    <option value="oct" class="text-uppercase"> oct
+                                                                    </option>
+                                                                    <option value="nov" class="text-uppercase"> nov
+                                                                    </option>
+                                                                    <option value="dec" class="text-uppercase"> dec
+                                                                    </option>
+                                                
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <h5>Year</h5>
+                                                    <select class="form-control select2" style="width: 100%;" name="year" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.year%>">
+                                                                <%=oldInput.year%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected  value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%for(let i=0 ; i<=25;i++){%>
+                                                                        <option value="2000">
+                                                                            <%=2000 + i%>
+                                                                        </option>
+                                                                        <%}%>
+                                                
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <hr>                                            
+                                            <div class="form-row">
+                                                <div class="form-group col-6">
+                                                    <h5>degree</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="degree">
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.degree%>">
+                                                                <%=oldInput.degree%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected  value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(degree.length>0){%>
+                                                                        <%degree.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <h5>stream</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="stream">
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.stream%>">
+                                                                <%=oldInput.stream%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected  value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(stream.length>0){%>
+                                                                        <%stream.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <hr>                                            
+                                            <div class="form-group">
+                                                <h5>Title For Question Paper</h5>
+                                                <input name="title" class="form-control"
+                                                    placeholder="Enter Document Title" required
+                                                    value="<%=oldInput?oldInput.title:''%>" />
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <h5>Keywords Here <span>(Seprated by comma(,))</span></h5>
+                                                <textarea name="keywords" class="form-control" rows="8" required
+                                                    placeholder="Enter Keywords For Searching Or Seo"><%=oldInput?oldInput.keywords:''%></textarea>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <h5>Question Paper Here</h5>
+                                                <div class="controls">
+                                                    <input type="file" name="uploadDoc" class="form-control"
+                                                        accept="application/pdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <input type="hidden" name="docType" value="quespaper">
+                                        <%if(editing){%>
+                                            <input type="hidden" name="docId" value="<%= oldInput._id %>">
+                                            <%}%>
+                                                <!-- /.box-body -->
+                                                <div class="box-footer text-center">
+                                                    <%if(!editing){%>
+                                                        <button type="submit" class="btn btn-success">
+                                                            <i class="fas fa-upload fa-lg"></i> Upload Question Paper
+                                                        </button>
+                                                        <%}else{%>
+                                                            <button type="submit" class="btn btn-success"><i
+                                                                    class="far fa-edit fa-lg"></i> Edit Question Paper
+                                                            </button>
+                                                            <%}%>
+                                                </div>
+                                    </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.content-wrapper -->
+        </div>
+        <!-- ./wrapper -->
+
+        <%- include('./includes/footer.ejs') %>
+
+            <!-- Select2 -->
+            <script src="/backend/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+
+            <!-- Superieur Admin for advanced form element -->
+            <script src="/backend/js/pages/advanced-form-element.js"></script>
+
+    </body>
+
+    </html>

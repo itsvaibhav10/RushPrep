@@ -1,0 +1,122 @@
+@import 'shared/variables';
+
+/*  ---------------   Showcase  --------------- */
+#showcase {
+  background: #333 url(../img/1showcase.jpg) no-repeat center/cover;
+  position: relative;
+  height: 70vh;
+  .showcase-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: $light-color;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      font-family: $heading-font;
+      text-transform: capitalize;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      word-spacing: 0.51rem;
+    }
+  }
+  @media (max-width: 750px) {
+    .showcase-content {
+      width: 100%;
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+/* --------------------   Category  -------------------- */
+
+#category {
+  // margin-top: 2rem;
+  // padding: 0.5rem;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  // align-items: center;
+  .element {
+    width: 100%;    
+    height: 100%;    
+    text-align: center;
+    color: $light-color;
+    background-color: lighten($color: $primary-color, $amount: 10);
+    border: 0.3rem solid $primary-color;    
+    color: $light-color;
+    padding: 0.5rem 1rem;    
+    &:hover {
+      box-shadow: 2px 2px 2px 2px rgba($color: #000000, $alpha: 0.3);
+      background-color: $primary-color;
+      transition: background-color 0.3s linear;
+    }
+  }
+}
+
+#categorySearch {
+  text-align: center;
+  margin: 3rem 2rem 1.8rem;
+  input {
+    border: none;
+    outline: none;
+    width: 80%;
+    padding: 1rem 2rem;
+    background-color: darken($color: $light-color, $amount: 15);
+    border-bottom: 0.3rem solid $dark-color;
+    border-radius: 0.3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    &::placeholder {
+      color: $dark-color;
+      text-align: center;
+    }
+  }
+  @media (max-width: 750px) {
+    input {
+      width: 100%;
+    }
+    margin: 3rem 2rem 0.51rem;
+  }
+}
+
+/* --------------------   Popular Ebooks  -------------------- */
+#masterContainer {
+  background-color: darken($color: #fff, $amount: 2%);
+  padding: 3rem 0;
+  // display: flex;
+  // justify-content: center;
+  // > section {
+  //   box-shadow: 2px 2px 2px 2px rgba($color: #000000, $alpha: 0.3);
+  //   width: 50%;
+  //   margin: 1rem;
+  //   padding: 1rem;
+  //   background-color: darken($color: $light-color, $amount: 3);
+  // }
+  .section-heading {
+    font-size: 2rem;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 600;
+    position: relative;
+    font-family: $heading-font;
+  }
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 5vw;
+    height: 2px;
+    margin-top: 0rem;
+    bottom: -1;
+    left: calc(50% - 2.5vw);
+    background-color: $primary-color;
+  }
+}

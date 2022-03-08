@@ -1,0 +1,77 @@
+/*  ------------------------------------  Colours Starts ------------------------------------*/
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
+.text-line-through {
+  text-decoration: line-through;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.font-weight-light {
+  font-weight: 400;
+}
+.font-weight-bold {
+  font-weight: 600;
+}
+.font-weight-bolder {
+  font-weight: 700;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+.text-danger {
+  color: $danger-color;
+}
+.text-success {
+  color: $success-color;
+}
+.text-dark {
+  color: $dark-color;
+}
+.text-light {
+  color: $light-color;
+}
+.text-info {
+  color: $info-color;
+}
+.text-white {
+  color: #fff;
+}
+
+.bg-primary {
+  background-color: $primary-color;
+}
+.bg-success {
+  background-color: $success-color;
+}
+.bg-danger {
+  background-color: $danger-color;
+}
+.bg-info {
+  background-color: $info-color;
+}
+.bg-dark {
+  background-color: $dark-color;
+}
+.bg-light {
+  background-color: $light-color;
+}
+.bg-white {
+  background-color: #fff;
+}
+/*  ------------------------------------  Colours Ends ------------------------------------*/

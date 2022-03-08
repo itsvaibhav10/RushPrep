@@ -1,0 +1,141 @@
+<%- include('./includes/head.ejs') %>
+    <!-- Bootstrap select -->
+    <link rel="stylesheet" href="/backend/assets/vendor_components/bootstrap-select/dist/css/bootstrap-select.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/backend/assets/vendor_components/select2/dist/css/select2.min.css">
+    <style>
+        body {
+            text-transform: capitalize;
+        }
+    </style>
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <%- include('./includes/navigation.ejs') %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <div class="container mt-5">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <%if(editing){%>
+                                    <h4 class="box-title">Edit Notes Here</h4>
+                                    <%}else{%>
+                                        <h4 class="box-title">Upload New Notes Here</h4>
+                                        <%}%>
+                            </div>
+                            <%if(errMsg){%>
+                                <div style="width: 60%; margin: auto; padding: 1rem 3rem;">
+                                    <h4 class="alert alert-danger">
+                                        <%=errMsg%>
+                                    </h4>
+                                </div>
+                                <%}%>
+                                    <!-- /.box-header -->
+
+                                    <form class="form"
+                                        action="<%= !editing ? '/admin/upload-notes':'/admin/edit-notes'%>"
+                                        method="POST" enctype="multipart/form-data">
+                                        <div class="box-body">
+                                            <div class="form-row">
+                                                <div class="form-group col-6">
+                                                    <h5>category</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="category" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.category%>">
+                                                                <%=oldInput.category%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(category.length>0){%>
+                                                                        <%category.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <h5>subject</h5>
+                                                    <select class="form-control select2" style="width: 100%;"
+                                                        name="subject" required>
+                                                        <%if(oldInput){%>
+                                                            <option selected value="<%=oldInput.subject%>">
+                                                                <%=oldInput.subject%>
+                                                            </option>
+                                                            <%}else{%>
+                                                                <option disabled selected value="">Choose One</option>
+                                                                <%}%>
+                                                                    <%if(subject.length>0){%>
+                                                                        <%subject.forEach(c=> {%>
+                                                                            <option value="<%=c.title%>">
+                                                                                <%=c.title%>
+                                                                            </option>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <h5>Enter Title</h5>
+                                                <input name="title" class="form-control"
+                                                    placeholder="Enter Document Title" required
+                                                    value="<%=oldInput?oldInput.title:''%>" />
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <h5>Keywords Here <span>(Seprated by comma(,))</span></h5>
+                                                <textarea name="keywords" class="form-control" rows="8" required
+                                                    placeholder="Enter Keywords For Searching Or Seo"><%=oldInput?oldInput.keywords:''%></textarea>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <h5>Notes Here</h5>
+                                                <div class="controls">
+                                                    <input type="file" name="uploadDoc" class="form-control"
+                                                        accept="application/pdf">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <input type="hidden" name="docType" value="notes">
+                                        <%if(editing){%>
+                                            <input type="hidden" name="docId" value="<%= oldInput._id %>">
+                                            <%}%>
+                                                <!-- /.box-body -->
+                                                <div class="box-footer text-center">
+                                                    <%if(!editing){%>
+                                                        <button type="submit" class="btn btn-success">
+                                                            <i class="fas fa-upload fa-lg"></i> Upload Notes
+                                                        </button>
+                                                        <%}else{%>
+                                                            <button type="submit" class="btn btn-success"><i
+                                                                    class="far fa-edit fa-lg"></i> Edit Notes
+                                                            </button>
+                                                            <%}%>
+                                                </div>
+                                    </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.content-wrapper -->
+        </div>
+        <!-- ./wrapper -->
+
+        <%- include('./includes/footer.ejs') %>
+
+            <!-- Select2 -->
+            <script src="/backend/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+
+            <!-- Superieur Admin for advanced form element -->
+            <script src="/backend/js/pages/advanced-form-element.js"></script>
+
+    </body>
+
+    </html>

@@ -1,0 +1,49 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/frontend/css/store.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <%if(docs.length> 0){%>
+                <main class="mt-5 p-5 shadow-lg container">
+                    <p>Showing results for <span class="text-danger">"<%=searchQuery%> in Notes"</span></p>
+                    <br>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Category</th>                                
+                                <th scope="col">Subject</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%docs.forEach(q=>{%>
+                                <tr>                                    
+                                    <td>
+                                        <%=q.category%>
+                                    </td>
+                                    <td>
+                                        <%=q.subject%>
+                                    </td>
+                                    <td>
+                                        <%=q.title%>
+                                    </td>
+                                    <td><a href="/download-file/<%=q._id%>" class="text-danger" title="Download PDF"><i class="fas fa-file-pdf fa-2x"></i> (
+                                            <%=q.downloads%> Times)
+                                        </a></td>
+                                </tr>
+                                <%})%>
+
+                        </tbody>
+                    </table>
+                </main>
+                <%}else{%>
+                    <div class="container p-5 bg-light my-5">
+                        <div class="display-4 text-center font-weight-bolder p-5">Nothing Found Here</div>
+                    </div>
+                    <%}%>
+
+    </body>
+
+    </html>

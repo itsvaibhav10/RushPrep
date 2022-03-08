@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/frontend/css/home.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>               
+
+                <!----------------------    Category Starts   ------------------>                
+                <div class="row pt-5">
+                    <div class="col-2"> </div>
+                    <section id="masterContainer" class="col-8">
+                        <section id="masterCollege">
+                            <div class="section-heading">List Of All <%=heading%></div>
+                            <div id="categorySearch">
+                                <input type="text" placeholder="Filter Your <%=heading%> Here" id="categorySearchInput">
+                            </div>
+                            <section id="category" class="row p-3 ">
+                                <%items.forEach(c=>{%>
+                                    <div class="col-lg-2 col-md-6 col-sm-12 mb-1">
+                                        <a href="/<%=heading%>/<%=c%>" class="element shadow-lg">
+                                            <h3>
+                                                <%=c%>
+                                            </h3>
+                                        </a>
+                                    </div>                                    
+                                    <%})%>
+                            </section>
+                        </section>
+                    </section>
+                    <div class="col-2"> </div>
+                </div>
+                <br>
+                <div class="p-5"></div>
+                <br>              
+                
+                <!----------------------    Category Ends   ------------------>
+                <%- include('../includes/footer.ejs') %>
+            </main>
+            <script src="/frontend/js/utility.js"></script>
+    </body>
+
+    </html>

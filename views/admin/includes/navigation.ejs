@@ -1,0 +1,105 @@
+<header class="main-header">
+  <!-- Logo -->
+  <a href="/admin" class="logo">
+    <!-- mini logo -->
+    <div class="logo-mini">
+      <span class="light-logo"><i class="fas fa-user-cog text-white"></i></span>
+      <span class="dark-logo"><i class="fas fa-user-cog text-black"></i></span>
+    </div>
+    <!-- logo-->
+    <div class="logo-lg">
+      <span class="light-logo text-white text-uppercase">
+        <%=isAuthenticated.name%>
+      </span>
+      <span class="dark-logo">
+        <%=isAuthenticated.name%>
+      </span>
+    </div>
+  </a>
+  <!-- Header Navbar -->
+  <!-- Header Navbar -->
+  <nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <div>
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+    </div>
+
+  </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <!-- sidebar-->
+  <section class="sidebar">
+    <!-- sidebar menu-->
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="treeview active">
+        <a href="#">
+          <i class="mdi mdi-view-dashboard"></i>
+          <span class="text-uppercase">
+            <%=isAuthenticated.name%>
+          </span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <form action="/logout" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-sm btn-gray btn-rounded px-4 font-weight-700"><i
+                    class="fas fa-sign-out-alt fa-lg"></i>
+                  <span>Log Out</span></button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview active">
+        <a href="#">
+          <i class="mdi mdi-view-dashboard"></i>
+          <span>Documents Ops</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<%= path === '/admin/upload-quespaper' ?'active':''%>"><a href="/admin/upload-quespaper"><i
+                class="mdi mdi-toggle-switch-off"></i>Question Paper Upload</a>
+          </li>
+          <li class="<%= path === '/admin/upload-notes' ?'active':''%>"><a href="/admin/upload-notes"><i class="mdi mdi-toggle-switch-off"></i>Notes Upload</a>
+          </li>
+          <li class="<%= path === '/admin/all-docs' ?'active':''%>"><a href="/admin/all-docs"><i class="mdi mdi-toggle-switch-off"></i>All Documents</a>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview active">
+        <a href="#">
+          <i class="mdi mdi-view-dashboard"></i>
+          <span>Master</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<%= path === '/admin/masters/category' ?'active':''%>"><a href="/admin/masters/category"><i class="mdi mdi-toggle-switch-off"></i>Category
+             </a>
+          </li>
+          <li class="<%= path === '/admin/masters/subject' ?'active':''%>"><a href="/admin/masters/subject"><i class="mdi mdi-toggle-switch-off"></i>Subject
+             </a>
+          </li>
+          <li class="<%= path === '/admin/masters/college' ?'active':''%>"><a href="/admin/masters/college"><i class="mdi mdi-toggle-switch-off"></i>College
+              </a>
+          </li>
+          <li class="<%= path === '/admin/masters/stream' ?'active':''%>"><a href="/admin/masters/stream"><i class="mdi mdi-toggle-switch-off"></i>Stream</a>
+          </li>
+          <li class="<%= path === '/admin/masters/degree' ?'active':''%>"><a href="/admin/masters/degree"><i class="mdi mdi-toggle-switch-off"></i>Degree</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</aside>

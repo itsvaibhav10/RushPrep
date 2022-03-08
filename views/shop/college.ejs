@@ -1,0 +1,92 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/frontend/css/store.css">
+    <style>
+        .main-heading {
+            background: #21e6c1;
+            color: #000;
+        }
+
+        .box {
+            border: #21e6c1 solid 0.51rem;
+            border-top: none;
+            background-color: #21e6c1;
+        }
+    </style>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <%if(subjects.length> 0 && heading){%>
+                <main class="container p-3">
+                    <div class="box shadow-lg">
+                        <div class="main-heading">
+                            <div class="text-center pt-5 display-4 text-uppercase font-weight-bolder
+                        ">
+                                <%=heading.title%>
+                            </div>
+                            <div class="p-3">
+                                <%=heading.description%>
+                            </div>
+                        </div>
+                        <section id="mainContainer" class="bg-white">
+                            <div class="tabset">
+                                <%subjects.forEach((s,idx)=>{%>
+                                    <input type="radio" name="tabset" id="tab<%=idx%>" aria-controls="<%=idx%>"
+                                        <%=idx===0?'checked':''%> >
+                                    <label for="tab<%=idx%>" class="text-uppercase">
+                                        <%=s%>
+                                    </label>
+                                    <%})%>
+                                        <div class="tab-panels">
+                                            <%subjects.forEach((s,idx)=>{%>
+                                                <section id="<%=idx%>" class="tab-panel">
+                                                    <div class="container">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Exam Date</th>
+                                                                    <th>Name</th>
+                                                                    <th>Category</th>
+                                                                    <th>Download</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <%docs.forEach(q=>{%>
+                                                                    <%if(q.subject===s){%>
+                                                                        <tr>
+                                                                            <th>
+                                                                                <%=q.month%>-<%=q.year%>
+                                                                            </th>
+                                                                            <td>
+                                                                                <%=q.title%>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=q.category%>
+                                                                            </td>
+                                                                            <td><a href="/download-file/<%=q._id%>" class="text-danger" title="Download PDF"><i class="fas fa-file-pdf fa-2x"></i> (<%=q.downloads%> Times)
+                                                                            </a></td>
+                                                                        </tr>
+                                                                        <%}%>
+                                                                            <%})%>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </section>
+                                                <%})%>
+                                        </div>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+                <%}else{%>
+                    <div class="container p-5 bg-light my-5">
+                        <div class="display-4 text-center font-weight-bolder p-5">Nothing Found Here</div>
+                    </div>
+                    <%}%>
+
+                        <%- include('../includes/footer.ejs') %>
+                            <script src="/frontend/js/utility.js"></script>
+    </body>
+
+    </html>

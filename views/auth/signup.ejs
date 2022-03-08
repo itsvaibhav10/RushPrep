@@ -1,0 +1,91 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body id="homeSignup">
+    <%- include('../includes/navigation.ejs')%>
+    <main class="container">
+        <div id="signupPage">
+            <h3 class="text-center display-2">Signup Here</h3>
+            <div class="divider"></div>
+            <div class="alert alert-danger" style="display: none;"></div>
+            <div class="alert alert-success" style="display: none;"></div>
+            <br>
+            <form id="registerationForm" method="POST">
+                <section class="d-grid">
+                    <div class="form-group ">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" value="<%= oldInput.name %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" name="email" id="email" value="<%= oldInput.email %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" value="<%= oldInput.password %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword"
+                            value="<%= oldInput.confirmPassword %>" required>
+                    </div>
+                </section>                
+                <br>
+                <div class="form-group-inline">
+                    <input class="" type="checkbox" onclick="togglePass()" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Show Password
+                    </label>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="divider"></div>
+                <div class="text-center mb-3">
+                    <button class="btn btn-success" type="submit">Signup <i class="fas fa-user-plus "></i></button>
+                    <div class="divider"></div>
+                    <p class="">Already have a Account ? <span><a href="/login" class="text-decoration-none">Login
+                                Here</a></span></p>
+                </div>
+            </form>
+            <div class="divider"></div>            
+        </div>
+    </main>
+    <%- include('../includes/footer.ejs') %>
+    <script src="/frontend/js/utility.js"></script>
+    <script>
+        const errorMsg = document.querySelector('.alert.alert-danger')
+
+        document.getElementById('registerationForm').addEventListener('submit', e => {
+            e.preventDefault();
+            errorMsg.style.display = 'none'
+            const name = document.querySelector('#name').value;
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
+            const confirmPassword = document.querySelector('#confirmPassword').value;        
+            const _csrf = document.querySelector('input[name="_csrf"]').value
+
+            fetch('/signup', {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({ name, email, password, confirmPassword, _csrf })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && !data.dataEntered) {
+                        errorMsg.textContent = data.errorMessage;
+                        errorMsg.style.display = 'block'
+                        name = data.oldUrl.name
+                        email = data.oldUrl.email
+                        password = null
+                        confirmPassword = null
+                    }
+                    if (!data.success) {
+                        errorMsg.textContent = data.msg;
+                        errorMsg.style.display = 'block'
+                    } else {
+                        return location = `${window.location.origin}/notify`
+                    }
+                });
+        });
+    </script>
+    </body>
+    </html>

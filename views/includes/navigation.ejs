@@ -1,0 +1,79 @@
+<!----------------------    Navbar Starts   ------------------>
+<header>
+  <div class="backdrop"></div>
+  <!----------------------    Main Navbar Starts   ------------------>
+  <nav id="main-nav">
+    <a href="/" class="nav-brand">PreviousPaper</a>
+    <ul class="main-nav__items">
+      <!-- <li class="main-nav__item"><a href="" class="active">Home</a></li> -->
+      <%if(isAuthenticated && isAuthenticated.isAdmin){%>
+        <li class="main-nav__item"><a href="/admin" class="active">Admin</a></li>
+        <%}%>
+          <!-- <li class="main-nav__item"><a href="">About Us</a></li>
+          <li class="main-nav__item"><a href="">Contact</a></li> -->
+    </ul>
+    <div class="main-nav__right">
+      <a href="#" id="searchBtn-main" class="btn btn-dark"><i class="fas fa-search"></i> Search</a>
+      <%if(!isAuthenticated){%>
+        <a href="/login" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <%}else{%>
+          <form action="/logout" method="post" style="display: inline-block;">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn-danger" type="submit"><i class="fas fa-sign-out-alt"></i>
+              Logout</button>
+          </form>
+          <%}%>
+    </div>
+  </nav>
+  <!----------------------    Main Navbar Ends   ------------------>
+
+  <!----------------------    Mobile Navbar Starts   ------------------>
+  <nav id="mobile-nav">
+    <a href="#" class="mobile-nav__btn">Menu</a>
+    <a href="/" class="nav-brand">PreviousPaper</a>
+    <div class="mobile-nav__menu">
+      <ul class="mobile-nav__items">
+        <li class="mobile-nav__item">
+          <a href="#" id="closeBtn"><i class="fas fa-times-circle fa-2x"></i></a>
+        </li>
+        <li class="mobile-nav__item"><a href="#" class="active">Home</a></li>
+        <li class="mobile-nav__item"><a href="#">About Us</a></li>
+        <li class="mobile-nav__item"><a href="#">Contact</a></li>
+        <li class="mobile-nav__item"><a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+
+      </ul>
+    </div>
+
+    <div class="mobile-nav__right">
+      <a href="#" id="searchBtn-mob"><i class="fas fa-search fa-lg"></i></a>
+      <div class="dropdown-user">
+        <div class="dropbtn">
+          <i class="fas fa-user fa-lg"><i class="fas fa-caret-down"></i></i>
+        </div>
+        <div class="dropdown-content hide">
+          <a href="#" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="#" class="dropdown-item"><i class="fas fa-user-plus"></i> Signup</a>
+          <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!----------------------    Mobile Navbar Ends   ------------------>
+
+  <!----------------------    Books SearchBar Starts   ------------------>
+  <div id="searchBar">
+    <form action="/search-doc" method="GET">
+      <select name="docType" id="">
+        <option value="quespaper">Question Paper</option>        
+        <option value="notes">Notes</option>
+      </select>
+      <input type="text" name="keywords" id="" placeholder="SEARCH" />      
+      <button type="submit" class="btn">
+        <i class="fas fa-search fa-lg"></i>
+      </button>
+    </form>
+  </div>
+  <!----------------------    Books SearchBar Ends   ------------------>
+</header>
+<!----------------------    Navbar Ends   ------------------>

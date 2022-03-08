@@ -1,0 +1,41 @@
+/*  ------------------------------------  Alerts Starts ------------------------------------*/
+.alert {
+  display: inline-block;
+  width: 100% !important;
+  padding: 1rem !important;
+  text-align: center;
+  vertical-align: middle;
+  font-family: $subheading-font !important;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.alert-primary {
+  background-color: lighten($primary-color, 25%) !important;
+  color: $primary-color !important;
+}
+.alert-success {
+  background-color: lighten($success-color, 40%) !important;
+  color: $success-color !important;
+}
+.alert-warning {
+  background-color: lighten($warning-color, 40%) !important;
+  color: $warning-color !important;
+}
+.alert-danger {
+  background-color: lighten($color: $danger-color, $amount: 40%) !important;
+  color: $danger-color !important;
+}
+.alert-info {
+  background-color: lighten($color: $info-color, $amount: 40%) !important;
+  color: $info-color !important;
+}
+.alert-light {
+  background-color: $light-color !important;
+  color: $dark-color !important;
+}
+.alert-dark {
+  background-color: lighten($color: $dark-color, $amount: 65%) !important;
+  color: $dark-color !important;
+}
+/*  ------------------------------------  Alerts Ends ------------------------------------*/

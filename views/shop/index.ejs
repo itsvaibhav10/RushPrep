@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/frontend/css/home.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <!----------------------    Showcase Starts   ------------------>
+                <section id="showcase">
+                    <div class="showcase-content">
+                        <h1>Practice Makes a Man Perfect
+                        </h1>
+                        <a href="#searchBooks" class="btn-lg btn-primary">Get Started</a>
+                    </div>
+                </section>
+                <!----------------------    Showcase Ends   ------------------>
+
+                <!----------------------    Category Starts   ------------------>
+                <br>
+                <div class="p-5"></div>
+                <br>
+                <div class="row">
+                    <div class="col-2"> </div>
+                    <section id="masterContainer" class="col-8">
+                        <section id="masterCollege">
+                            <div class="section-heading">Colleges List</div>
+                            <div class="mb-4"></div>
+                            <section id="category" class="row justify-content-center p-4 ">
+                                <%for(let i=0; i < college.length; i++ ){%>
+                                    <div class="col-lg-2 col-md-6 col-sm-12 mb-1">
+                                        <a href="/college/<%=college[i].title%>" class="element shadow-lg">
+                                            <h3>
+                                                <%=college[i].title%>
+                                            </h3>
+                                        </a>
+                                    </div>
+                                    <%}%>
+                            </section>
+                            <div class="text-center mt-4"><a href="/find/college" class="btn btn-dark">Find All Colleges
+                                    <i class="fas fa-chevron-circle-right fa-lg"></i></a></div>
+                        </section>
+                    </section>
+                    <div class="col-2"> </div>
+                </div>
+                <br>
+                <div class="p-5"></div>
+                <br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <section id="masterContainer" class="container">
+                            <section id="masterSubject">
+                                <div class="section-heading">Subjects</div>
+                                <div class="mb-4"></div>
+                                <section id="category" class="row justify-content-center p-4 ">
+                                    <%for(let i=0; i < subject.length; i++ ){%>
+                                        <div class="col-lg-2 col-md-4 col-sm-12 mb-1">
+                                            <a href="/subject/<%=subject[i].title%>" class="element shadow-lg">
+                                                <h3>
+                                                    <%=subject[i].title%>
+                                                </h3>
+                                            </a>
+                                        </div>
+                                        <%}%>
+                                </section>
+                                <div class="text-center mt-4"><a href="/find/subject" class="btn btn-dark">Find All
+                                        Subjects
+                                        <i class="fas fa-chevron-circle-right fa-lg"></i></a></div>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="col-2 "></div>
+                </div>
+                <br>
+                <div class="p-5"></div>
+                <br>
+                <!----------------------    Category Ends   ------------------>
+                <%- include('../includes/footer.ejs') %>
+            </main>
+            <script src="/frontend/js/utility.js"></script>
+    </body>
+
+    </html>

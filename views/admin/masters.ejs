@@ -1,0 +1,162 @@
+<%- include('./includes/head.ejs') %>
+    <!-- Data Table-->
+    <link rel="stylesheet" type="text/css" href="/backend/assets/vendor_components/datatable/datatables.min.css" />
+    <style>
+        input::placeholder {
+            text-transform: capitalize;
+        }
+    </style>
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <%- include('./includes/navigation.ejs') %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <div class="container p-5">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h4 class="box-title text-capitalize">Add New <%=type%>
+                                </h4>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <form class="form" method="POST" action="/admin/add-master-item">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="newTitle" class="control-label text-capitalize">New
+                                            <%=type%> Title
+                                        </label>
+                                        <input type="text" name="newMasterTypeItem" class="form-control" id="newTitle"
+                                            placeholder="add new <%=type%> here" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newDes" class="control-label text-capitalize">Add
+                                            <%=type%> Description
+                                        </label>
+                                        <input type="text" name="newMasterTypeItemDes" class="form-control" id="newDes"
+                                            placeholder="add new <%=type%> Description here" required>
+                                    </div>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="MasterType" value="<%=type%>">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success text-capitalize"><i
+                                                class="fas fa-plus-circle fa-lg"></i> Add New <%=type%>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </form>
+                        </div>
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h4 class="box-title text-capitalize">List of <%=type%>
+                                </h4>
+                            </div>
+                            </h3>
+                            <br>
+                            <div class="m-5 p-5 bg-white">
+                                <%if(master.length> 0){%>
+                                    <%master.forEach((m,idx)=>{%>
+                                        <h3 class="text-black text-uppercase text-center box-title">
+                                            <%=m.title%>
+                                        </h3>
+                                        <p>
+                                            <%=m.description%>
+                                        </p>
+                                        <div class="text-center">
+                                            <form action="/admin/all-docs" method="post" style="display: inline-block;">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                <input type="hidden" name="type" value="<%=type%>">
+                                                <input type="hidden" name="item" value="<%=m.title%>">
+                                                <button type="submit" class="btn btn-primary btn-sm"><i
+                                                        class="fas fa-eye"></i>
+                                                    View</button>
+                                            </form>
+
+                                            <button class="btn btn-info btn-sm" data-toggle="modal"
+                                                data-target="#modal-edit<%=idx%>"><i class="far fa-edit"></i>
+                                                Edit</button>
+
+                                            <div class="modal modal-fill fade" data-backdrop="false"
+                                                id="modal-edit<%=idx%>" tabindex="-1">
+                                                <form action="/admin/edit-master-item" method="post">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Edit <%=type%>
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="box-body">
+                                                                    <div class="form-group">
+                                                                        <label for="newTitle"
+                                                                            class="control-label text-capitalize">Edit
+                                                                            <%=type%> Title
+                                                                        </label>
+                                                                        <input type="text" name="editedMasterTitle"
+                                                                            class="form-control" id="newTitle"
+                                                                            placeholder="add new <%=type%> here"
+                                                                            value="<%=m.title%>" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="newDes"
+                                                                            class="control-label text-capitalize">Edit
+                                                                            <%=type%> Description
+                                                                        </label>
+                                                                        <textarea name="editedMasterDes"
+                                                                            class="form-control" rows="8"
+                                                                            required><%=m.description%></textarea>
+                                                                    </div>
+                                                                    <input type="hidden" name="_csrf"
+                                                                        value="<%= csrfToken %>">
+                                                                    <input type="hidden" name="masterType"
+                                                                        value="<%=type%>">
+                                                                        <input type="hidden" name="masterItemIndex"
+                                                                        value="<%=idx%>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                    class="btn btn-bold btn-pure btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-bold btn-pure btn-primary float-right">Complete
+                                                                    Edit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <form action="/admin/all-docs" method="post" style="display: inline-block;">
+                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-trash"></i>
+                                                    Delete</button>
+                                            </form> -->
+                                        </div>
+                                        <hr>
+                                        <br>
+
+                                        <%})%>
+
+                                            <%}else{ %>
+                                                <div class="p-5 text-center text-capitalize">
+                                                    <h3>No <%=type%> Found</h3>
+                                                </div>
+                                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.content-wrapper -->
+        </div>
+        <!-- ./wrapper -->
+        <%- include('./includes/footer.ejs') %>
+
+    </body>
+
+    </html>

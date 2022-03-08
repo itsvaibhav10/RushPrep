@@ -1,0 +1,138 @@
+<%- include('./includes/head.ejs') %>
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <%- include('./includes/navigation.ejs') %>
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">All Documents</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-pills justify-content-center margin-bottom">
+                                <li class=" nav-item"> <a href="#navpills2-1" class="nav-link active" data-toggle="tab"
+                                        aria-expanded="false">Question Papers (<%=quesPaper.length%>)</a> </li>
+                                <li class="nav-item"> <a href="#navpills2-2" class="nav-link" data-toggle="tab"
+                                        aria-expanded="false">Notes (<%=notes.length%>)</a> </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div id="navpills2-1" class="tab-pane active">
+                                    <%if(quesPaper.length> 0){%>
+                                        <%quesPaper.forEach(q=>{%>
+                                            <div class="box box-default">
+                                                <div class="box-header with-border">
+                                                    <div class="row justify-content-center align-items-center">
+                                                        <div class="col-8">
+                                                            <h3 class="box-title text-capitalize">
+                                                                <%=q.title%> (<%=q.month%>
+                                                                        <%=q.year%>)
+                                                            </h3>
+                                                        </div>
+                                                        <div class="col-4 text-center">
+                                                            <a href="/admin/edit-quespaper/<%=q._id%>?edit=true"
+                                                                class="btn btn-info btn-sm mb-3"><i
+                                                                    class="far fa-edit"></i>
+                                                                Edit</a>
+                                                            <a href="/admin/del-quespaper/<%=q._id%>"
+                                                                class="btn btn-danger btn-sm mb-3"><i
+                                                                    class="fas fa-trash"></i>
+                                                                Delete</a>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <!-- /.box-header -->
+                                                <div class="box-body text-capitalize">
+
+                                                    <h5>College : <%=q.college%>
+                                                    </h5>
+                                                    <h5>Category : <%=q.category%>
+                                                    </h5>
+                                                    <h5>Subject : <%=q.subject%>
+                                                    </h5>
+                                                    <h5>Keywords : <%=q.keywords%>
+                                                    </h5>
+                                                    <h5>Downloads : <%=q.downloads%>
+                                                    </h5>
+                                                    <br>
+                                                    <a href="/download-file/<%=q._id%>"
+                                                        class="btn btn-success btn-sm"><i
+                                                            class="far fa-arrow-alt-circle-down"></i>
+                                                        Download</a>
+                                                </div>
+                                            </div>
+                                            <%})%>
+                                                <%}else{%>
+                                                    <div class="jumbotron">
+                                                        <h3>No Docs Found</h3>
+                                                    </div>
+                                                    <%}%>
+                                </div>
+                                <div id="navpills2-2" class="tab-pane">
+                                    <%if(notes.length> 0){%>
+                                        <%notes.forEach(q=>{%>
+                                            <div class="box box-default">
+                                                <div class="box-header with-border">
+                                                    <div class="row justify-content-center align-items-center">
+                                                        <div class="col-8">
+                                                            <h3 class="box-title text-uppercase">
+                                                                <%=q.subject%>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="col-4 text-center">
+                                                            <a href="/admin/edit-notes/<%=q._id%>?edit=true"
+                                                                class="btn btn-info btn-sm mb-3"><i
+                                                                    class="far fa-edit"></i>
+                                                                Edit</a>
+                                                            <a href="/admin/del-notes/<%=q._id%>"
+                                                                class="btn btn-danger btn-sm mb-3"><i
+                                                                    class="fas fa-trash"></i>
+                                                                Delete</a>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <!-- /.box-header -->
+                                                <div class="box-body">
+
+                                                    <h5>Category : <%=q.category%>
+                                                    </h5>
+                                                    <h5>Subject : <%=q.subject%>
+                                                    </h5>
+                                                    <h5>Keywords : <%=q.keywords%>
+                                                    </h5>
+                                                    <br>
+                                                    <a href="/download-file/<%=q._id%>"
+                                                        class="btn btn-success btn-sm"><i
+                                                            class="far fa-arrow-alt-circle-down"></i>
+                                                        Download</a>
+                                                </div>
+                                            </div>
+                                            <%})%>
+                                                <%}else{%>
+                                                    <div class="jumbotron">
+                                                        <h3>No Docs Found</h3>
+                                                    </div>
+                                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <!-- /.content-wrapper -->
+        </div>
+        <!-- ./wrapper -->
+        <%- include('./includes/footer.ejs') %>
+    </body>
+
+    </html>

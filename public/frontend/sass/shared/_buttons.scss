@@ -1,0 +1,85 @@
+/*  ------------------------------------  Button Starts ------------------------------------*/
+
+.btn {
+  display: inline-block !important;
+  padding: 0.8rem 2rem !important;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none !important;
+  font-family: $subheading-font !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  border-radius: 0;
+}
+
+.btn-lg {
+  display: inline-block !important;
+  padding: 1rem 3.5rem !important;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none !important;
+  font-family: $subheading-font !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  border-radius: 0;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  color: $light-color !important;
+  &:hover,
+  &:active {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.5s ease !important;
+    background-color: darken($primary-color, 10%) !important;
+  }
+}
+.btn-success {
+  background-color: $success-color;
+  color: $light-color !important;
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.5s ease !important;
+    background-color: darken($success-color, 10%) !important;
+  }
+}
+.btn-danger {
+  background-color: $danger-color;
+  color: $light-color !important;
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.5s ease !important;
+    background-color: darken($danger-color, 10%) !important;
+  }
+}
+.btn-info {
+  background-color: $info-color;
+  color: $light-color !important;
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.5s ease !important;
+    background-color: darken($info-color, 10%) !important;
+  }
+}
+.btn-light {
+  background-color: $light-color;
+  color: $dark-color !important;
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.5s ease !important;
+    background-color: darken($light-color, 10%) !important;
+  }
+}
+.btn-dark {
+  background-color: $dark-color;
+  color: $light-color !important;
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.5s ease !important;
+    background-color: darken($dark-color, 10%) !important;
+  }
+}
+
+/*  ------------------------------------  Button Ends ------------------------------------*/
